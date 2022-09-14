@@ -8,7 +8,7 @@ const VoiceRSS={speech:function(e){this._validate(e),this._request(e)},_validate
 function test() {
   VoiceRSS.speech({
     key: 'dca54ff256c54ea699a9f3c37eee8906',
-    src: 'Bee Movie Script. According to all known laws of aviation,there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don\'t care what humans think is impossible.',
+    src: `poopy`,
     hl: 'en-us',
     v: 'Linda',
     r: 0, 
@@ -19,17 +19,27 @@ function test() {
 }
 
 // // On Load
-test();
+// test();
 
 // Get Jokes from Joke API
-// async function getJokes() {
-//   try {
-//     something
-//   } catch (error) {
-//     // Catch Errors
-//     console.log('whoops', error);
-//   }
-// }
+async function getJokes() {
+  let joke = '';
+  const apiUrl = 'https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    if (data.setup){
+      joke = `${data.setup} ${data.delivery}`;
+      test();
+    } else {
+      joke = data.joke;
+    }
+    console.log(joke);
+  } catch (error) {
+    // Catch Errors
+    console.log('whoops', error);
+  }
+}
 
 // On Load
-// getJokes();
+getJokes();
