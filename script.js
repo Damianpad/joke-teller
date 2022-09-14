@@ -7,7 +7,6 @@ const VoiceRSS={speech:function(e){this._validate(e),this._request(e)},_validate
 
 // Passing Joke to VoiceRSS API
 function tellMe(joke) {
-  console.log('Tell me: ', joke);
 
   VoiceRSS.speech({
     key: 'dca54ff256c54ea699a9f3c37eee8906',
@@ -41,5 +40,5 @@ async function getJokes() {
   }
 }
 
-// On Load
-getJokes();
+// Event Listeners
+button.addEventListener('click', getJokes());
